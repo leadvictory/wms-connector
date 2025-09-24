@@ -1,6 +1,22 @@
 import requests, json
-
+import time
 BASE_URL = "http://45.82.249.153:8008"
+
+def get_all_customers(base_url, headers):
+    url = f"{base_url}/customer/"
+    customers = []
+
+    while url:
+        resp = requests.get(url, headers=headers)
+        if resp.status_code != 200:
+            print("❌ Error fetching customers:", resp.status_code, resp.text)
+            break
+
+        data = resp.json()
+        customers.extend(data.get("results", []))
+        url = data.get("next")   # follow pagination
+
+    return customers
 
 # --- Step 1: Login ---
 login_payload = {"name": "admin", "password": "8834.FyJ"}
@@ -10,20 +26,20 @@ data = resp.json()
 
 if data.get("code") == "200":
     token = data["data"]["openid"]
-
+    userid = data["data"]["user_id"]
+    print(userid)
     # headers must match exactly (lowercase)
     headers = {
         "token": token,
-        "operator": "81"   # replace with valid staff.id you captured
+        "operator": str(userid)    # replace with valid staff.id you captured
     }
 
-    # --- Step 2: Get customers ---
-    customers_resp = requests.get(f"{BASE_URL}/customer/", headers=headers)
-    customers = customers_resp.json().get("results", [])
-    print("📋 Customers:")
+    # --- Step 2: Get all customers (with pagination) ---
+    customers = get_all_customers(BASE_URL, headers)
+    print(f"📋 Total customers fetched: {len(customers)}")
     for c in customers:
         print("-", c.get("customer_name"))
-
+    time.sleep(1900)
     customer_name = customers[0]["customer_name"] if customers else "Customer-1"
 
     # --- Step 3: Get goods ---

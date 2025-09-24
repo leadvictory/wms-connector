@@ -1,0 +1,96 @@
+{
+  "salesOrderId": 7408,
+  "customer": {
+    "customerId": 336,
+    "name": "IMP Y COM ORTOPEDIA SUIZA SPA",
+    "legalName": "IMP Y COM ORTOPEDIA SUIZA SPA",
+    "VATId": "76.194.079-1",
+    "email": "jolea@ortopediasuiza.cl"
+  },
+  "contact": null,
+  "salesman": {
+    "salesmanId": 6,
+    "name": "OS APUMANQUE"
+  },
+  "dealer": null,
+  "carrier": null,
+  "priceList": {
+    "priceListId": 5,
+    "name": "ORTOPEDIA SUIZA"
+  },
+  "term": {
+    "termId": "01",
+    "name": "Contado"
+  },
+  "branch": null,
+  "issuedDate": "2025-09-24T11:03:41",
+  "dueDate": "2025-09-24T00:00:00",
+  "nullDoc": false,
+  "locked": true,
+  "approved": false,
+  "approvedBy": null,
+  "purchaseOrderNumber": "",
+  "deliveryAddress": {
+    "addressId": 7,
+    "description": "Apumanque",
+    "address": "Av. Manquehue Sur N°31 Local 391",
+    "city": "Santiago",
+    "county": "Las Condes",
+    "zipCode": "",
+    "state": "",
+    "country": "Chile"
+  },
+  "deliveryDate": null,
+  "deliveryTimeFrame": "",
+  "deliveryCost": 0.0,
+  "deliveryNotes": "",
+  "bypassCreditLimit": false,
+  "source": null,
+  "sourceOrderId": "",
+  "amountPaid": 0.0,
+  "amountPaidCurrencyCode": "CLP",
+  "invoiceDocType": {
+    "docTypeId": 0,
+    "name": "Otros Documentos de Ventas"
+  },
+  "notes": "",
+  "createdBy": {
+    "userId": "05",
+    "name": "Joselyn"
+  },
+  "createdAt": "2025-09-24T11:04:08",
+  "modifiedBy": null,
+  "modifiedAt": null,
+  "customFields": {
+    "impreso_": false,
+    "sucursal_": "APU"
+  },
+  "items": [
+    {
+      "itemId": 99105,
+      "itemOrder": 2,
+      "product": {
+        "productId": 5479,
+        "sku": "BT-PC-0001",
+        "description": "BATA PACIENTE DESECHABLE AZUL CRANBERRY (REF. AABATAPA)",
+        "unitOfMeasure": "UNIDAD",
+        "allowFreeDescription": false,
+        "allowUserChangePrices": false,
+        "applyGeneralVATRate": true,
+        "maxDiscount": null
+      },
+      "itemDescription": "",
+      "quantity": 10.0,
+      "originalUnitPrice": 413.0,
+      "currencyCode": "CLP",
+      "parityToMainCurrency": 1.0,
+      "unitPrice": 413.0,
+      "discountPercentage": 0.0,
+      "lot": null,
+      "archived": false,
+      "costCenter": null,
+      "traceFrom": null,
+      "customFields": {}
+    }
+  ]
+}
