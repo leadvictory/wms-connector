@@ -1,2 +1,5 @@
 wms/
 sales_orders/
+build/
+dist/
+__pycache__/
