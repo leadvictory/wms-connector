@@ -40,7 +40,7 @@
     "state": "",
     "country": "Chile"
   },
-  "deliveryDate": null,
+  "deliveryDate": "2025-09-24T00:00:00",
   "deliveryTimeFrame": "",
   "deliveryCost": 0.0,
   "deliveryNotes": "",

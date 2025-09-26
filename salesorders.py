@@ -112,4 +112,4 @@ if __name__ == '__main__':
         order_ids = salesorder.getSalesOrdersList()
         for oid in order_ids:
             salesorder.getSalesorder(oid)
-            time.sleep(100)  # small pause between calls
+            # time.sleep(100)  # small pause between calls
