@@ -27,13 +27,13 @@ def load_existing_order_ids():
         reader = csv.DictReader(f)
         return {int(row["salesOrderId"]) for row in reader if row.get("salesOrderId")}
     
-def append_to_csv(order_id):
+def append_to_csv(order_id, dn_code):
     file_exists = os.path.isfile(CSV_FILE)
     with open(CSV_FILE, "a", newline="", encoding="utf-8") as f:
         writer = csv.writer(f)
         if not file_exists:
-            writer.writerow(["salesOrderId", "timestamp"])  # header
-        writer.writerow([order_id, datetime.now().isoformat()])
+            writer.writerow(["salesOrderId", "DN code", "timestamp"])  # header
+        writer.writerow([order_id, dn_code, datetime.now().isoformat()])
     print(f"📂 Logged SalesOrder {order_id} to {CSV_FILE}")
 
 def get_all_customers(base_url, headers):
@@ -94,13 +94,13 @@ def create_new_DN(salesorder):
         # goods_codes = [g["goods_code"] for g in goods] if goods else ["A000041"]
         # goods_qtys = [10] * len(goods_codes)
         # --- Step 4: Show existing DN list ---
-        # dn_list_resp = requests.get(f"{BASE_URL}/dn/list/", headers=headers)
-        # if dn_list_resp.status_code == 200:
-        #     dn_list = dn_list_resp.json().get("results", [])
-        #     print("\n📑 Existing DNs:")
-        #     for dn in dn_list:
-        #         print("-", dn)
-                # time.sleep(1000)
+        dn_list_resp = requests.get(f"{BASE_URL}/dn/list/", headers=headers)
+        if dn_list_resp.status_code == 200:
+            dn_list = dn_list_resp.json().get("results", [])
+            print("\n📑 Existing DNs:")
+            for dn in dn_list:
+                print("-", dn)
+        time.sleep(1000)
         # --- Extract from salesorder JSON ---
         customer_name = salesorder.get("salesman", "OS WEB")
         items = salesorder.get("items", [])
@@ -129,7 +129,7 @@ def create_new_DN(salesorder):
             # print("\n➡️ JSON to send:", json.dumps(detail_payload, indent=2))
             res_detail = requests.post(f"{BASE_URL}/dn/detail/", json=detail_payload, headers=headers)
             print("DN detail response:", res_detail.status_code, res_detail.text)
-            return res_detail.status_code
+            return res_detail.status_code, dn_code
 
     else:
         print("❌ Login failed:", data)
@@ -151,7 +151,7 @@ class LaudusAPIsales:
                                     headers=headers)
             if request.status_code == 200:
                 self.credential = request.json()
-                print("✅ token =", self.credential["token"])
+                # print("✅ token =", self.credential["token"])
                 return True
             else:
                 print("❌ Login error:", request.text)
@@ -266,6 +266,7 @@ if __name__ == '__main__':
     salesorder = LaudusAPIsales()
     if salesorder.getToken():
         processed_ids = load_existing_order_ids()
+        print(f"loaded ids: {processed_ids}")
         order_ids = salesorder.getSalesOrdersList()
         print(f"Sales Order ID list: {order_ids}")
 
@@ -279,9 +280,9 @@ if __name__ == '__main__':
             if not filtered_data:
                 continue
 
-            status = create_new_DN(filtered_data)
+            status, dn_code = create_new_DN(filtered_data)
             if status == 200:
-                append_to_csv(oid, filtered_data["salesman"])
+                append_to_csv(oid, dn_code)
 
     input("\n✅ Finished. Press Enter to close...")
 
