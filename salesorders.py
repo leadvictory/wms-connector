@@ -32,8 +32,8 @@ def append_to_csv(order_id, dn_code):
     with open(CSV_FILE, "a", newline="", encoding="utf-8") as f:
         writer = csv.writer(f)
         if not file_exists:
-            writer.writerow(["salesOrderId", "DN code", "timestamp"])  # header
-        writer.writerow([order_id, dn_code, datetime.now().isoformat()])
+            writer.writerow(["salesOrderId", "DN code", "timestamp", "salesWaybillId"])  # header
+        writer.writerow([order_id, dn_code, datetime.now().isoformat(), ""])
     print(f"📂 Logged SalesOrder {order_id} to {CSV_FILE}")
 
 def get_all_customers(base_url, headers):
@@ -61,6 +61,45 @@ def get_all_goods(base_url, headers):
         goods.extend(data.get("results", []))
         url = data.get("next")   # follow pagination
     return goods
+
+def get_picked_dns(base_url, headers):
+    # --- Step 1: Login ---
+    login_payload = {"name": "admin", "password": "8834.FyJ"}
+    resp = requests.post(f"{base_url}/login/", json=login_payload)
+    data = resp.json()
+
+    if data.get("code") == "200":
+        token = data["data"]["openid"]
+
+        headers = {
+            "token": token,
+            "operator": "81"  
+        }
+        all_dns = []
+        url = f"{base_url}/dn/list/"
+
+        while url:
+            resp = requests.get(url, headers=headers)
+            if resp.status_code != 200:
+                print("❌ Error fetching:", resp.status_code, resp.text)
+                break
+
+            data = resp.json()
+            results = data.get("results", [])
+            all_dns.extend(results)
+
+            # follow pagination
+            url = data.get("next")
+            if url:
+                # convert "none://" → "http://"
+                if url.startswith("none://"):
+                    url = url.replace("none://", "http://")
+            else:
+                url = None
+
+        # ✅ Filter only dn_status == 4
+        filtered_dns = [dn for dn in all_dns if dn.get("dn_status") == 4]
+        return filtered_dns
 
 def create_new_DN(salesorder):
         
@@ -93,14 +132,7 @@ def create_new_DN(salesorder):
 
         # goods_codes = [g["goods_code"] for g in goods] if goods else ["A000041"]
         # goods_qtys = [10] * len(goods_codes)
-        # --- Step 4: Show existing DN list ---
-        dn_list_resp = requests.get(f"{BASE_URL}/dn/list/", headers=headers)
-        if dn_list_resp.status_code == 200:
-            dn_list = dn_list_resp.json().get("results", [])
-            print("\n📑 Existing DNs:")
-            for dn in dn_list:
-                print("-", dn)
-        time.sleep(1000)
+
         # --- Extract from salesorder JSON ---
         customer_name = salesorder.get("salesman", "OS WEB")
         items = salesorder.get("items", [])

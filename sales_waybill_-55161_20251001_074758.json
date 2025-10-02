@@ -1,0 +1,254 @@
+{
+    "salesWaybillId": -55161,
+    "docType": {
+        "docTypeId": 52,
+        "name": "Guía de Despacho Electrónica"
+    },
+    "docNumber": 55161,
+    "customer": {
+        "customerId": 336,
+        "name": "IMP Y COM ORTOPEDIA SUIZA SPA",
+        "legalName": "IMP Y COM ORTOPEDIA SUIZA SPA",
+        "VATId": "76.194.079-1",
+        "email": "jolea@ortopediasuiza.cl"
+    },
+    "contact": null,
+    "salesman": null,
+    "dealer": null,
+    "carrier": null,
+    "priceList": {
+        "priceListId": 5,
+        "name": "ORTOPEDIA SUIZA"
+    },
+    "warehouse": {
+        "warehouseId": "005",
+        "name": "BODEGA MACUL"
+    },
+    "term": {
+        "termId": "01",
+        "name": "Contado"
+    },
+    "branch": null,
+    "issuedDate": "2025-09-30T13:15:30",
+    "nullDoc": false,
+    "purchaseOrderNumber": "",
+    "deliveryAddress": {
+        "addressId": 6,
+        "description": "INTERNET",
+        "address": "LOS APOSTOLES 3580",
+        "city": "SANTIAGO",
+        "county": "MACUL",
+        "zipCode": "",
+        "state": "",
+        "country": "CHILE"
+    },
+    "deliveryCost": 0.0,
+    "deliveryNotes": "",
+    "deliveryVehiclePlate": null,
+    "deliverySIIType": "2",
+    "deliverySchedule": "",
+    "cause": null,
+    "bypassCreditLimit": false,
+    "notes": "",
+    "DTE": {
+        "trackId": "11240694328",
+        "documentStatus": "",
+        "uploadStatus": "",
+        "sentToCustomerAt": "2025-09-30T13:18:53"
+    },
+    "isSale": true,
+    "createdBy": {
+        "userId": "05",
+        "name": "Joselyn"
+    },
+    "createdAt": "2025-09-30T13:16:36",
+    "modifiedBy": null,
+    "modifiedAt": null,
+    "customFields": {
+        "local_": "WEB"
+    },
+    "items": [
+        {
+            "itemId": 463504,
+            "itemOrder": 463504,
+            "product": {
+                "productId": 11447,
+                "sku": "BL-ID-0068",
+                "description": "FIJADOR DEDO PULGAR UNIVERSAL BLUNDING (REF. HM-0115)",
+                "unitOfMeasure": "UNIDAD",
+                "allowFreeDescription": false,
+                "allowUserChangePrices": false,
+                "applyGeneralVATRate": true,
+                "maxDiscount": null
+            },
+            "itemDescription": "",
+            "quantity": 1.0,
+            "originalUnitPrice": 6282.0,
+            "currencyCode": "CLP",
+            "parityToMainCurrency": 1.0,
+            "unitPrice": 6282.0,
+            "discountPercentage": 0.0,
+            "costCenter": null,
+            "lot": null,
+            "traceFrom": null,
+            "serialNumbers": null,
+            "customFields": {}
+        },
+        {
+            "itemId": 463505,
+            "itemOrder": 463505,
+            "product": {
+                "productId": 250,
+                "sku": "AR-NE-0005",
+                "description": "ARNES 5 PUNTAS",
+                "unitOfMeasure": "UNIDAD",
+                "allowFreeDescription": false,
+                "allowUserChangePrices": false,
+                "applyGeneralVATRate": true,
+                "maxDiscount": null
+            },
+            "itemDescription": "",
+            "quantity": 1.0,
+            "originalUnitPrice": 10000.0,
+            "currencyCode": "CLP",
+            "parityToMainCurrency": 1.0,
+            "unitPrice": 10000.0,
+            "discountPercentage": 0.0,
+            "costCenter": null,
+            "lot": null,
+            "traceFrom": null,
+            "serialNumbers": null,
+            "customFields": {}
+        },
+        {
+            "itemId": 463506,
+            "itemOrder": 463506,
+            "product": {
+                "productId": 12173,
+                "sku": "BL-JN-0005",
+                "description": "CORRECTOR JUANETE DERECHO L BLUNDING (REF. MI-138)",
+                "unitOfMeasure": "UNIDAD",
+                "allowFreeDescription": false,
+                "allowUserChangePrices": false,
+                "applyGeneralVATRate": true,
+                "maxDiscount": null
+            },
+            "itemDescription": "",
+            "quantity": 1.0,
+            "originalUnitPrice": 4394.0,
+            "currencyCode": "CLP",
+            "parityToMainCurrency": 1.0,
+            "unitPrice": 4394.0,
+            "discountPercentage": 0.0,
+            "costCenter": null,
+            "lot": null,
+            "traceFrom": null,
+            "serialNumbers": null,
+            "customFields": {}
+        },
+        {
+            "itemId": 463507,
+            "itemOrder": 463507,
+            "product": {
+                "productId": 12174,
+                "sku": "BL-JN-0006",
+                "description": "CORRECTOR JUANETE IZQUIERDO L BLUNDING (REF. MI-138)",
+                "unitOfMeasure": "UNIDAD",
+                "allowFreeDescription": false,
+                "allowUserChangePrices": false,
+                "applyGeneralVATRate": true,
+                "maxDiscount": null
+            },
+            "itemDescription": "",
+            "quantity": 1.0,
+            "originalUnitPrice": 4394.0,
+            "currencyCode": "CLP",
+            "parityToMainCurrency": 1.0,
+            "unitPrice": 4394.0,
+            "discountPercentage": 0.0,
+            "costCenter": null,
+            "lot": null,
+            "traceFrom": null,
+            "serialNumbers": null,
+            "customFields": {}
+        },
+        {
+            "itemId": 463508,
+            "itemOrder": 463508,
+            "product": {
+                "productId": 13464,
+                "sku": "BO-OL-0005",
+                "description": "BOLSA OLOR DIAMONDS CONVATEC (REF. TR105) (x 100 UNIDADES)",
+                "unitOfMeasure": "UNIDAD",
+                "allowFreeDescription": false,
+                "allowUserChangePrices": false,
+                "applyGeneralVATRate": true,
+                "maxDiscount": null
+            },
+            "itemDescription": "",
+            "quantity": 1.0,
+            "originalUnitPrice": 28500.0,
+            "currencyCode": "CLP",
+            "parityToMainCurrency": 1.0,
+            "unitPrice": 28500.0,
+            "discountPercentage": 0.0,
+            "costCenter": null,
+            "lot": null,
+            "traceFrom": null,
+            "serialNumbers": null,
+            "customFields": {}
+        },
+        {
+            "itemId": 463509,
+            "itemOrder": 463509,
+            "product": {
+                "productId": 1477,
+                "sku": "FI-BR-0003",
+                "description": "APOSITO COLAGENO + ALGINATO FIBRACOL PLUS 5.1 x 5.1 CM LET´S PROTECT (REF.2981)",
+                "unitOfMeasure": "UNIDAD",
+                "allowFreeDescription": false,
+                "allowUserChangePrices": false,
+                "applyGeneralVATRate": true,
+                "maxDiscount": null
+            },
+            "itemDescription": "",
+            "quantity": 1.0,
+            "originalUnitPrice": 6045.0,
+            "currencyCode": "CLP",
+            "parityToMainCurrency": 1.0,
+            "unitPrice": 6045.0,
+            "discountPercentage": 0.0,
+            "costCenter": null,
+            "lot": null,
+            "traceFrom": null,
+            "serialNumbers": null,
+            "customFields": {}
+        },
+        {
+            "itemId": 463510,
+            "itemOrder": 463510,
+            "product": {
+                "productId": 15713,
+                "sku": "PA-AB-0049",
+                "description": "PAÑAL ABENA PANTS M3 PREMIUM (x 15 UNIDADES)",
+                "unitOfMeasure": "UNIDAD",
+                "allowFreeDescription": false,
+                "allowUserChangePrices": false,
+                "applyGeneralVATRate": true,
+                "maxDiscount": null
+            },
+            "itemDescription": "",
+            "quantity": 3.0,
+            "originalUnitPrice": 23050.0,
+            "currencyCode": "CLP",
+            "parityToMainCurrency": 1.0,
+            "unitPrice": 23050.0,
+            "discountPercentage": 0.0,
+            "costCenter": null,
+            "lot": null,
+            "traceFrom": null,
+            "serialNumbers": null,
+            "customFields": {}
+        }
+    ]
+}

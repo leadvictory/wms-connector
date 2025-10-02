@@ -150,7 +150,12 @@ class LaudusAPIsales:
             response = requests.get(url, headers=headers)
             if response.status_code == requests.codes.ok:
                 data = response.json()
+                # ✅ Save to JSON file
+                filename = f"sales_waybill_{salesWaybillId}_{datetime.now().strftime('%Y%m%d_%H%M%S')}.json"
+                with open(filename, "w", encoding="utf-8") as f:
+                    json.dump(data, f, indent=4, ensure_ascii=False)
 
+                print(f"Saved sales waybill {salesWaybillId} to {filename}")
                 customer_id = data.get("customer", {}).get("customerId")
                 dte = data.get("DTE", {})
                 track_id = dte.get("trackId")
@@ -476,6 +481,7 @@ if __name__ == '__main__':
         waybill_ids = saleswaybill.getWaybillsList()
         for wid in waybill_ids:
             payload = saleswaybill.getSalesWaybill(wid)
+            time.sleep(1000)
             if payload != None:
                 # print("works")
                 # print(payload)
