@@ -230,7 +230,10 @@ class LaudusAPIsales:
                 "name": "Guía de Despacho Electrónica"
             }
             data["deliverySIIType"] = "2"
-            data["customFields"]["LOCAL_"] = "WEB"
+            sucursal_value = data["customFields"].get("sucursal_")
+
+            # reset customFields with only LOCAL_
+            data["customFields"] = {"LOCAL_": sucursal_value}
 
             # 🔹 Clean up items
             if "items" in data and isinstance(data["items"], list):
