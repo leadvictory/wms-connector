@@ -3,3 +3,4 @@ sales_orders/
 build/
 dist/
 __pycache__/
+purchase_orders/
