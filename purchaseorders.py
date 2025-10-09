@@ -17,24 +17,24 @@ SALESMAN_MAP = {
 }
 
 BASE_URL = "http://45.82.249.153:8008"
-CSV_FILE = "processed_orders.csv"
+CSV_FILE = "Purchase_orders.csv"
 
 def load_existing_order_ids():
-    """Load all salesOrderIds already logged in CSV file"""
+    """Load all PurchaseOrderIds already logged in CSV file"""
     if not os.path.isfile(CSV_FILE):
         return set()
     with open(CSV_FILE, newline="", encoding="utf-8") as f:
         reader = csv.DictReader(f)
-        return {int(row["salesOrderId"]) for row in reader if row.get("salesOrderId")}
+        return {int(row["purchaseOrderId"]) for row in reader if row.get("purchaseOrderId")}
     
-def append_to_csv(order_id, dn_code):
+def append_to_csv(order_id, asn_code):
     file_exists = os.path.isfile(CSV_FILE)
     with open(CSV_FILE, "a", newline="", encoding="utf-8") as f:
         writer = csv.writer(f)
         if not file_exists:
-            writer.writerow(["salesOrderId", "DN code", "timestamp", "salesWaybillId"])  # header
-        writer.writerow([order_id, dn_code, datetime.now().isoformat(), ""])
-    print(f"📂 Logged SalesOrder {order_id} to {CSV_FILE}")
+            writer.writerow(["purchaseOrderId", "ASN code", "timestamp", "purchaseWaybillId"])  # header
+        writer.writerow([order_id, asn_code, datetime.now().isoformat(), ""])
+    print(f"📂 Logged Purchase {order_id} to {CSV_FILE}")
 
 def get_all_customers(base_url, headers):
     url = f"{base_url}/customer/"
@@ -203,8 +203,8 @@ class LaudusAPIsales:
             return True
         return self.getToken()
 
-    def getSalesOrdersList(self):
-        yesterday = datetime.now() - timedelta(days=3)
+    def getPurchaseOrdersList(self):
+        yesterday = datetime.now() - timedelta(days=1)
         today = datetime.now()
         start_date = yesterday.strftime('%Y-%m-%d')
         end_date = today.strftime('%Y-%m-%d')
@@ -299,9 +299,9 @@ class LaudusAPIsales:
 if __name__ == '__main__':
     salesorder = LaudusAPIsales()
     if salesorder.getToken():
-        # processed_ids = load_existing_order_ids()
-        # print(f"loaded ids: {processed_ids}")
-        order_ids = salesorder.getSalesOrdersList()
+        processed_ids = load_existing_order_ids()
+        print(f"loaded ids: {processed_ids}")
+        order_ids = salesorder.getPurchaseOrdersList()
         print(f"Sales Order ID list: {order_ids}")
 
         for oid in order_ids:
@@ -315,9 +315,9 @@ if __name__ == '__main__':
                 continue
 
             status, asn_code = create_new_ASN(filtered_data)
-            time.sleep(10)
-        #     if status == 200:
-        #         append_to_csv(oid, dn_code)
+            # time.sleep(10)
+            if status == 200:
+                append_to_csv(oid, asn_code)
 
     input("\n✅ Finished. Press Enter to close...")
 
